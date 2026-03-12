@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Build output
+mcp/dist/
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# Environment
+.env
+.env.local
+.env.production
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Go
+server/server
+server/agenthub
+*.exe
+
+# Config with secrets
+.agenthub/

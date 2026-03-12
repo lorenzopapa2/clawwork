@@ -1,0 +1,13 @@
+# Source (ship only compiled JS)
+index.ts
+tsconfig.json
+
+# Dev
+node_modules/
+.env
+.env.*
+
+# Misc
+*.md
+.gitignore
+.DS_Store

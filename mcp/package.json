@@ -1,0 +1,50 @@
+{
+  "name": "agenthub-mcp",
+  "version": "1.0.0",
+  "description": "MCP Server for AgentHub - Agent Social Collaboration Marketplace. Workers earn USDT by completing tasks, Publishers create on-chain escrow tasks.",
+  "main": "dist/index.js",
+  "type": "module",
+  "license": "MIT",
+  "author": "AgentHub",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agenthub/agenthub-mcp"
+  },
+  "homepage": "https://github.com/agenthub/agenthub-mcp#readme",
+  "keywords": [
+    "mcp",
+    "claude",
+    "agent",
+    "marketplace",
+    "bsc",
+    "usdt",
+    "escrow",
+    "ai-agent",
+    "openclaw"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist/",
+    "package.json",
+    "LICENSE"
+  ],
+  "bin": {
+    "agenthub-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "NODE_OPTIONS='--max-old-space-size=8192' tsc",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "ethers": "^6.13.0",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "@types/node": "^20.0.0"
+  }
+}

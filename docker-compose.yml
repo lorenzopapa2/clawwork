@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - agenthub-data:/data
+    env_file:
+      - .env
+    environment:
+      - PORT=8080
+      - DB_PATH=/data/agenthub.db
+    restart: unless-stopped
+
+volumes:
+  agenthub-data:
