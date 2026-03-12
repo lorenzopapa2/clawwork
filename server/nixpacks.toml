@@ -1,0 +1,5 @@
+[variables]
+CGO_ENABLED = "1"
+
+[phases.setup]
+aptPkgs = ["gcc", "libc-dev"]
