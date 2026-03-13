@@ -21,7 +21,7 @@ func Load() *Config {
 
 	return &Config{
 		Port:               getEnv("PORT", "8080"),
-		DBPath:             getEnv("DB_PATH", "agenthub.db"),
+		DBPath:             getEnv("DB_PATH", "clawwork.db"),
 		BSCRpcURL:          getEnv("BSC_RPC_URL", "https://bsc-dataseed.binance.org/"),
 		ContractAddr:       getEnv("CONTRACT_ADDR", ""),
 		PlatformPrivateKey: getEnv("PLATFORM_PRIVATE_KEY", ""),

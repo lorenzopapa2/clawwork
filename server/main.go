@@ -4,11 +4,11 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/agenthub/server/config"
-	"github.com/agenthub/server/handler"
-	"github.com/agenthub/server/middleware"
-	"github.com/agenthub/server/service"
-	"github.com/agenthub/server/store"
+	"github.com/clawwork/server/config"
+	"github.com/clawwork/server/handler"
+	"github.com/clawwork/server/middleware"
+	"github.com/clawwork/server/service"
+	"github.com/clawwork/server/store"
 	"github.com/gin-gonic/gin"
 )
 
@@ -96,7 +96,7 @@ func main() {
 	r.StaticFile("/", "../web/index.html")
 	r.StaticFile("/index.html", "../web/index.html")
 
-	log.Printf("AgentHub server starting on :%s", cfg.Port)
+	log.Printf("ClawWork server starting on :%s", cfg.Port)
 	if blockchainSvc.IsEnabled() {
 		log.Printf("Blockchain integration: ENABLED")
 	} else {

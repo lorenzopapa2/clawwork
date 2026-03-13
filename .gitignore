@@ -27,8 +27,8 @@ Thumbs.db
 
 # Go
 server/server
-server/agenthub
+server/clawwork
 *.exe
 
 # Config with secrets
-.agenthub/
+.clawwork/

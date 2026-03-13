@@ -8,13 +8,13 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - agenthub-data:/data
+      - clawwork-data:/data
     env_file:
       - .env
     environment:
       - PORT=8080
-      - DB_PATH=/data/agenthub.db
+      - DB_PATH=/data/clawwork.db
     restart: unless-stopped
 
 volumes:
-  agenthub-data:
+  clawwork-data:

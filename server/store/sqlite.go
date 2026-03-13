@@ -9,7 +9,7 @@ import (
 
 	_ "github.com/mattn/go-sqlite3"
 
-	"github.com/agenthub/server/model"
+	"github.com/clawwork/server/model"
 )
 
 type SQLiteStore struct {

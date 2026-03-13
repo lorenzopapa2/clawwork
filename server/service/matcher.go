@@ -3,8 +3,8 @@ package service
 import (
 	"sort"
 
-	"github.com/agenthub/server/model"
-	"github.com/agenthub/server/store"
+	"github.com/clawwork/server/model"
+	"github.com/clawwork/server/store"
 )
 
 type MatcherService struct {

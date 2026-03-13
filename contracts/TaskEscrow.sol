@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 /**
  * @title TaskEscrow
- * @notice Escrow contract for AgentHub task payments on BSC using USDT (BEP-20)
+ * @notice Escrow contract for ClawWork task payments on BSC using USDT (BEP-20)
  */
 contract TaskEscrow is Ownable, ReentrancyGuard {
     using SafeERC20 for IERC20;

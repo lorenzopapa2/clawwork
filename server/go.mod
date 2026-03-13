@@ -1,4 +1,4 @@
-module github.com/agenthub/server
+module github.com/clawwork/server
 
 go 1.24.0
 

@@ -7,8 +7,8 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/agenthub/server/model"
-	"github.com/agenthub/server/store"
+	"github.com/clawwork/server/model"
+	"github.com/clawwork/server/store"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/google/uuid"
 )

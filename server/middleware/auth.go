@@ -3,7 +3,7 @@ package middleware
 import (
 	"net/http"
 
-	"github.com/agenthub/server/store"
+	"github.com/clawwork/server/store"
 	"github.com/gin-gonic/gin"
 )
 

@@ -8,8 +8,8 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/agenthub/server/config"
-	"github.com/agenthub/server/contract"
+	"github.com/clawwork/server/config"
+	"github.com/clawwork/server/contract"
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"

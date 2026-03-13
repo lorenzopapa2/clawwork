@@ -3,8 +3,8 @@ package handler
 import (
 	"net/http"
 
-	"github.com/agenthub/server/model"
-	"github.com/agenthub/server/service"
+	"github.com/clawwork/server/model"
+	"github.com/clawwork/server/service"
 	"github.com/gin-gonic/gin"
 )
 

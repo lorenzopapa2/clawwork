@@ -10,7 +10,7 @@ import * as os from "os";
 
 // ─── Config persistence ───────────────────────────────────────────────────────
 
-interface AgentHubConfig {
+interface ClawWorkConfig {
   server_url: string;
   agent_id: string;
   api_key: string;
@@ -23,11 +23,11 @@ interface AgentHubConfig {
   rpc_url: string;
 }
 
-const CONFIG_DIR = path.join(os.homedir(), ".agenthub");
+const CONFIG_DIR = path.join(os.homedir(), ".clawwork");
 const CONFIG_PATH = path.join(CONFIG_DIR, "config.json");
 
-const DEFAULT_CONFIG: AgentHubConfig = {
-  server_url: "https://agenthub.example.com",
+const DEFAULT_CONFIG: ClawWorkConfig = {
+  server_url: "https://server-production-fb56.up.railway.app",
   agent_id: "",
   api_key: "",
   wallet_address: "",
@@ -39,7 +39,7 @@ const DEFAULT_CONFIG: AgentHubConfig = {
   rpc_url: "https://bsc-dataseed1.binance.org/",
 };
 
-function loadConfig(): AgentHubConfig {
+function loadConfig(): ClawWorkConfig {
   try {
     if (fs.existsSync(CONFIG_PATH)) {
       const raw = fs.readFileSync(CONFIG_PATH, "utf-8");
@@ -51,7 +51,7 @@ function loadConfig(): AgentHubConfig {
   return { ...DEFAULT_CONFIG };
 }
 
-function saveConfig(cfg: AgentHubConfig): void {
+function saveConfig(cfg: ClawWorkConfig): void {
   if (!fs.existsSync(CONFIG_DIR)) {
     fs.mkdirSync(CONFIG_DIR, { recursive: true });
   }
@@ -68,12 +68,12 @@ async function apiCall(
   body?: unknown
 ): Promise<unknown> {
   const baseUrl =
-    process.env.AGENTHUB_URL || config.server_url || "http://localhost:8080";
+    process.env.CLAWWORK_URL || config.server_url || "http://localhost:8080";
   const url = `${baseUrl}/api/v1${path}`;
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
   };
-  const apiKey = process.env.AGENTHUB_API_KEY || config.api_key;
+  const apiKey = process.env.CLAWWORK_API_KEY || config.api_key;
   if (apiKey) {
     headers["X-API-Key"] = apiKey;
   }
@@ -149,7 +149,7 @@ function jsonResult(data: unknown) {
 // ─── MCP Server ───────────────────────────────────────────────────────────────
 
 const server = new McpServer({
-  name: "agenthub",
+  name: "clawwork",
   version: "1.0.0",
 });
 
@@ -158,7 +158,7 @@ const server = new McpServer({
 // ═══════════════════════════════════════════════════════════════════════════════
 server.tool(
   "setup_worker",
-  "Register as a worker agent on AgentHub. Provide your wallet address to receive USDT payments.",
+  "Register as a worker agent on ClawWork. Provide your wallet address to receive USDT payments.",
   {
     name: z.string().describe("Your agent name"),
     wallet_address: z
@@ -171,7 +171,7 @@ server.tool(
     server_url: z
       .string()
       .optional()
-      .describe("AgentHub server URL (default: https://agenthub.example.com)"),
+      .describe("ClawWork server URL (default: https://clawwork.example.com)"),
   },
   async (params) => {
     if (params.server_url) {
@@ -210,7 +210,7 @@ server.tool(
 // ═══════════════════════════════════════════════════════════════════════════════
 server.tool(
   "setup_publisher",
-  "Register as a task publisher on AgentHub. Provide your private key for local on-chain signing (never sent to server).",
+  "Register as a task publisher on ClawWork. Provide your private key for local on-chain signing (never sent to server).",
   {
     name: z.string().describe("Your agent name"),
     private_key: z
@@ -223,7 +223,7 @@ server.tool(
     server_url: z
       .string()
       .optional()
-      .describe("AgentHub server URL (default: https://agenthub.example.com)"),
+      .describe("ClawWork server URL (default: https://clawwork.example.com)"),
     contract_addr: z
       .string()
       .optional()
@@ -277,7 +277,7 @@ server.tool(
 // ═══════════════════════════════════════════════════════════════════════════════
 server.tool(
   "browse_tasks",
-  "Browse available tasks on the AgentHub marketplace with optional filters",
+  "Browse available tasks on the ClawWork marketplace with optional filters",
   {
     status: z
       .string()
@@ -422,7 +422,7 @@ server.tool(
 // ═══════════════════════════════════════════════════════════════════════════════
 server.tool(
   "publish_task",
-  "Publish a new task: locally sign USDT approve + createEscrow on BSC, then register task on AgentHub server. Private key never leaves your machine.",
+  "Publish a new task: locally sign USDT approve + createEscrow on BSC, then register task on ClawWork server. Private key never leaves your machine.",
   {
     title: z.string().describe("Task title"),
     description: z.string().describe("Detailed task description"),
@@ -483,7 +483,7 @@ server.tool(
     const escrowReceipt = await escrowTx.wait();
     const escrowTxHash = escrowReceipt.hash;
 
-    // Step 4: Register task on AgentHub server
+    // Step 4: Register task on ClawWork server
     const result = await apiCall("POST", "/tasks", {
       id: taskId,
       title: params.title,
@@ -676,7 +676,7 @@ server.tool(
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("AgentHub MCP Server running on stdio");
+  console.error("ClawWork MCP Server running on stdio");
 }
 
 main().catch((err) => {
